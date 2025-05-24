@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            background-position: center center;
+            background-size: cover;
+            transition: 0.4s;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+
+        .slider-container {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            height: 70vh;
+            width: 70vw;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            opacity: 0;
+            height: 100vh;
+            width: 100vw;
+            background-position: center center;
+            background-size: cover;
+            position: absolute;
+            top: -15vh;
+            left: -15vw;
+            transition: 0.4s ease;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .arrow {
+            position: fixed;
+            color: #fff;
+            background-color: transparent;
+            font-size: 30px;
+            border: 2px solid orange;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .arrow:focus {
+            outline: 0;
+        }
+
+        .arrow.left-arrow {
+            left: calc(15vw - 65px);
+        }
+
+        .arrow.right-arrow {
+            right: calc(15vw - 65px);
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- https://picsum.photos/ -->
+    <!-- <img src="https://picsum.photos/500/300" alt=""> -->
+
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('https://picsum.photos/id/167/2100');"></div>
+        <div class="slide" style="background-image: url('https://picsum.photos/picsum/2100');"></div>
+        <div class="slide" style="background-image: url('https://picsum.photos/picsum');"></div>
+        <div class="slide" style="background-image: url('https://picsum.photos/picsum');"></div>
+        <div class="slide" style="background-image: url('https://picsum.photos//picsum');"></div>
+    
+        <button class="arrow left-arrow" id="left">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <button class="arrow right-arrow" id="right">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+
+    <script>
+        const body = document.body;
+        const sliderContainer = document.getElementsByClassName('slider-container');
+        const slides = document.querySelectorAll('.slide');
+        const leftBtn = document.getElementById('left')
+        const rightBtn = document.getElementById('right')
+
+
+        let activeSlide = 0;
+        rightBtn.addEventListener('click', () => {
+            activeSlide++;
+
+            if (activeSlide > slides.length) {
+                activeSlide = 0;
+            }
+
+            setBgToBody();
+            setActiveSlide()
+        })
+
+        leftBtn.addEventListener('click', () => {
+            activeSlide--;
+
+            if (activeSlide < 0) {
+                activeSlide = slides.length - 1;
+            }
+
+            setBgToBody();
+            setActiveSlide()
+        })
+
+
+        setBgToBody();
+
+        function setBgToBody() {
+            body.style.backgroundImage = slides[activeSlide].style.backgroundImage
+        }
+
+        function setActiveSlide() {
+            slides.forEach((slide) => {
+                slide.classList.remove('active')
+            })
+            slides[activeSlide].classList.add('active')
+        }
+
+    </script>
+</body>
+
+</html>

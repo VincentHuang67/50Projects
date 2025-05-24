@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .bg {
+            background: url('https://christianwatchword.files.wordpress.com/2021/02/cww-photo-20210227-lent.jpg') no-repeat center center/cover;
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: calc(100vw + 60px);
+            height: calc(100vh + 60px);
+            z-index: -1;
+            filter: blur(0px);
+        }
+
+        .loading-text {
+            font-size: 50px;
+            color: rgb(36, 52, 58);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bg"></section>
+    <div class="loading-text">0%</div>
+    </div>
+
+    <script>
+        const loadText = document.querySelector('.loading-text')
+        const bg = document.querySelector('.bg')
+        let load = 0;
+
+        let int = setInterval(blurring, 30);
+        function blurring() {
+            load++;
+
+            if (load > 99) {
+                clearInterval(int);
+            }
+
+            loadText.innerText = `${load}%`
+            loadText.style.opacity = scale(load, 0, 100, 1, 0);
+            bg.style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
+        }
+
+        const scale = (num, in_min, in_max, out_min, out_max) => {
+            return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+        };
+
+
+    </script>
+</body>
+
+</html>

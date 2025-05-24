@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: antiquewhite;
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgb(190, 209, 209);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(146, 14, 14, 0.1), 15px 17px 6px 2px rgba(0, 0, 0, 0.1);
+            padding: 50px 20px;
+            text-align: center;
+            max-width: 100%;
+            width: 800px;
+        }
+
+        h3 {
+            margin: 0;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+
+        .joke {
+            font-size: 30px;
+            letter-spacing: 1px;
+            line-height: 40px;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: #9d7cc4;
+            border: 0;
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 5px 10px 10px rgba(146, 14, 14, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1);
+            padding: 14px 40px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Don't Laugh Challenge</h3>
+        <div id="joke" class="joke">
+            PlaceHolder
+        </div>
+        <button id="jokeBtn" class="btn">Get Another Joke</button>
+    </div>
+
+    <script>
+        const jokeEl = document.getElementById('joke');
+        const jokeBtn = document.getElementById('jokeBtn');
+
+
+        jokeBtn.addEventListener('click', generateJoke);
+
+        generateJoke();
+
+        // fetch api
+        // function generateJoke() {
+        //     const config = {
+        //         headers: {
+        //             'Accept': 'application/json'
+        //         }
+        //     }
+        //     //https://publicapi.dev/joke-api
+        //     fetch('https://sv443.net/jokeapi/v2/joke/Any', config)
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             let j = data.joke;
+        //             let s = data.safe;
+        //             if (s === false) {
+        //                 generateJoke()
+        //             }
+        //             if (data.joke === undefined) {
+        //                 j = data.setup;
+        //             }
+        //             jokeEl.innerHTML = j                    
+        //         })
+
+        // }
+
+        async function generateJoke() {
+            const config = {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+            //https://publicapi.dev/joke-api
+            const res = await fetch('https://sv443.net/jokeapi/v2/joke/Any', config);      
+            
+            const data = await res.json();
+            
+            if (data.joke === undefined) generateJoke();
+            jokeEl.innerHTML = data.joke
+
+        }
+    </script>
+</body>
+
+</html>

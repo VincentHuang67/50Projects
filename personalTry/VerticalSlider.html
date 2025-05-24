@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            height: 100vh;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .left-slide {
+            height: 100%;
+            width: 35%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .left-slide > div {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .left-slide h1 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            margin-top: -30px;
+        }
+
+        .right-slide {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 35%;
+            width: 65%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .right-slide > div {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            height: 100%;
+            width: 100%;
+        }
+
+        button {
+            background-color: #fff;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 15px;
+        }
+
+        button:hover {
+            color: #222;
+            outline: none;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .slider-container .action-buttons button {
+            position: absolute;
+            left: 35%;
+            top: 50%;
+            z-index: 100;
+        }
+
+        .slider-container .action-buttons .down-button {
+            transform: translateX(-100%);
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .slider-container .action-buttons .up-button {
+            transform: translateY(-100%);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="left-slide">
+            <div style="background-color: #fd3555;">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem, ipsum.</p>
+            </div>
+            <div style="background-color: #4e6fdb;">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem, ipsum.</p>
+            </div>
+            <div style="background-color: #42a3a7;">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem, ipsum.</p>
+            </div>
+            <div style="background-color: #d6d438;">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem, ipsum.</p>
+            </div>
+        </div>
+        <div class="right-slide">
+            <div style="background-image: url('https://picsum.photos/1350');"></div>
+            <div style="background-image: url('https://picsum.photos/1350');"></div>
+            <div style="background-image: url('https://picsum.photos/1350');"></div>
+            <div style="background-image: url('https://picsum.photos/1350');"></div>
+        </div>
+        <div class="action-buttons">
+            <button class="down-button">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+
+            <button class="up-button">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        const sliderContainer = document.querySelector('.slider-container')
+        const slideRight = document.querySelector('.right-slide')
+        const slideLeft = document.querySelector('.left-slide')
+        const upBtn = document.querySelector('.up-button')
+        const downBtn = document.querySelector('.down-button')
+        const slideLength = slideRight.querySelectorAll('div').length
+
+        let activeSlideIdx = 0
+
+        slideLeft.style.top = `-${(slideLength - 1) * 100}vh`
+
+        upBtn.addEventListener('click', () => changeSlide('up'))
+        downBtn.addEventListener('click', () => changeSlide('down'))
+
+
+        const changeSlide = (direction) => {
+            const slideHeight = sliderContainer.clientHeight
+            if (direction === 'up') {
+                activeSlideIdx++
+                if (activeSlideIdx > slideLength - 1) {
+                    activeSlideIdx = 0;
+                }
+            } else if (direction === 'down') {
+                activeSlideIdx--;
+                if (activeSlideIdx < 0) {
+                    activeSlideIdx = slideLength - 1;
+                }
+            }
+
+            slideRight.style.transform = `translateY(-${activeSlideIdx * slideHeight}px)`
+            slideLeft.style.transform = `translateY(${activeSlideIdx * slideHeight}px)`
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #333;
+            color: #222;
+            margin: 0;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background-color: #fafafa;
+            transform-origin: top left;
+            transition: transform 0.3s linear;
+            width: 100vw;
+            min-height: 100vh;
+            padding: 50px;
+        }
+
+        .container.show-nav {
+            transform: rotate(-20deg);
+        }
+
+        .circle-container {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle {
+            background-color: #ff7979;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 0.5s linear;
+        }
+
+        .container.show-nav .circle{
+            transform: rotate(-70deg);
+        }
+
+        .circle button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100px;
+            background: transparent;
+            border: 0;
+            font-size: 26px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .circle button:focus {
+            outline: none;
+        }
+
+        .circle button#open {
+            left: 60%;
+        }
+
+        .circle button#close {
+            top: 60%;
+            transform: rotate(90deg);
+            transform-origin: top left;
+        }
+
+        .container.show-nav + nav li {
+            transform: translateX(0);
+            transition-delay: 0.3s;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding-left: 30px;
+        }
+
+        nav ul li {
+            text-transform: uppercase;
+            color: #fff;
+            margin: 40px 0;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease-in;
+        }
+
+        nav ul li i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        nav ul li + li {
+            margin-left: 15px;
+            transform: translateX(-150%);
+        }
+
+        nav ul li + li + li {
+            margin-left: 30px;
+            transform: translateX(-200%);
+        }
+
+        .content img {
+            max-width: 100%;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .content h1 {
+            margin: 0;
+        }
+
+        .content small {
+            color: #555;
+            font-style: italic;
+        }
+
+        .content p {
+            color: #333;
+            line-height: 1.5;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="circle-container">
+            <div class="circle">
+                <button id="close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button id="open">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <article>
+                <h1>Amazing Art</h1>
+                <small>Van gogh</small>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque suscipit incidunt libero quidem,
+                    earum numquam reprehenderit odio atque, ratione quod obcaecati esse ipsam quam necessitatibus rem
+                    facere perspiciatis doloribus rerum beatae repudiandae! Nisi velit, obcaecati dignissimos labore cum
+                    nihil aperiam illo fuga molestias, autem delectus exercitationem praesentium illum necessitatibus at
+                    explicabo natus ipsam magni possimus repellendus voluptatibus quod voluptas veniam repellat. Hic
+                    doloribus voluptas placeat nam inventore, animi error cumque, earum unde reiciendis cupiditate
+                    tempore voluptatibus adipisci doloremque tenetur eius illo labore, dolor reprehenderit sint quas
+                    iure. Voluptate in, minima quisquam voluptatibus recusandae aspernatur totam assumenda ipsa, illum
+                    fuga vel?</p>
+
+                <h3>The Starry Night</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDuXRsUi_vW5fZKRvlB41OoexUjhckdOrURQ&s"
+                    alt="The Starry Night">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati reprehenderit sint delectus illum
+                    doloremque hic perspiciatis, eius, ipsa odit nam sequi eaque repellat, ullam iusto. Quam similique
+                    illo dolorum impedit id non repellat ea assumenda, iste, architecto officia. Officia dolore unde
+                    natus doloribus atque distinctio. Veritatis quidem dolore vitae nihil unde illo dolorem, quasi natus
+                    harum, quaerat odit. Doloremque sequi nisi repellendus quod recusandae? Sequi porro sint error amet
+                    ratione! Excepturi repellendus autem unde, quas consequatur dolorum est fugit veritatis itaque
+                    laboriosam eligendi dicta obcaecati quasi vel perspiciatis nesciunt odio explicabo maiores. Nihil
+                    incidunt, animi saepe ipsam, nemo esse beatae iusto numquam laboriosam quam id eaque. Expedita velit
+                    voluptatibus dicta reprehenderit alias natus cupiditate eos vero quia obcaecati vitae architecto,
+                    officiis iure, minima temporibus, optio accusantium ab neque nam placeat illo itaque officia! Saepe,
+                    iure delectus officiis cum ipsam, in perferendis et reprehenderit debitis deleniti, eligendi sequi
+                    molestiae ipsum veniam. Cupiditate, est rerum! Labore ducimus earum alias molestias tempore aperiam
+                    praesentium nobis corporis a similique vero, fuga error incidunt beatae maxime amet. Rerum optio
+                    iusto commodi sunt corporis, magni at, dicta voluptatibus ut consequatur explicabo sit molestias.
+                    Ipsa ducimus amet alias inventore fugit libero cupiditate incidunt, iusto veritatis rem vel eaque.
+                    Earum magnam est dolore similique voluptas nostrum, cum eos sequi temporibus animi dicta ullam
+                    dolores tempore ad enim inventore deleniti sit illum. In consequatur magni sequi quaerat voluptatum,
+                    quis corporis culpa perferendis minima iste. Veniam impedit delectus, debitis, illo unde laudantium
+                    necessitatibus blanditiis, ut labore nihil incidunt natus. Dolor quisquam rem repellendus nobis
+                    voluptatum odit sint! Quaerat tenetur cumque aspernatur nemo, sit fugiat! Quod nam rem illo
+                    provident expedita voluptatibus libero doloremque harum, vel suscipit, laudantium similique quaerat
+                    nesciunt eligendi doloribus velit. Ut, doloremque nostrum. Minus, ab quae non, sint pariatur illum
+                    labore at a qui earum quis nobis accusantium eos numquam saepe quasi? Voluptatum, impedit laborum
+                    veritatis nihil odit exercitationem labore vel inventore deserunt culpa magnam expedita dolorem quod
+                    illum asperiores molestiae voluptatem sed alias ullam iste. Quasi pariatur ipsa sunt beatae aliquam
+                    voluptatem aperiam, odit, iusto vero rem saepe sed voluptates cum esse impedit modi atque veritatis
+                    optio maiores, ratione nisi maxime nemo. Dignissimos iste quibusdam explicabo officiis eligendi
+                    soluta et nihil dolorem, facilis earum maxime autem sit reprehenderit harum corrupti. Voluptatibus
+                    earum molestiae quibusdam nihil officiis laboriosam eum molestias necessitatibus labore quo ad,
+                    perspiciatis corrupti laborum? Cupiditate repudiandae placeat, vel non amet, eaque provident illo
+                    dicta aperiam magni quia dolorum. Quibusdam cupiditate assumenda facilis est deleniti ipsam. Autem
+                    doloremque animi, fugit atque inventore quos mollitia vero consequatur facilis quis voluptatem
+                    cumque ipsum consequuntur magnam nam eveniet sint quas? Quo officia consequatur dolore ipsum sint,
+                    similique quidem, officiis at assumenda quas laborum provident, aspernatur nisi quia velit fuga
+                    minus unde cupiditate iure. Error sed aut velit rem totam eaque corrupti obcaecati consequuntur at.
+                    Dolorem ut non pariatur dignissimos, inventore perspiciatis quas, ea tempore libero, quo error vel
+                    recusandae nihil animi vitae id similique ipsa labore? Quas reiciendis animi pariatur temporibus
+                    deserunt iure ex, architecto tenetur incidunt sed voluptas consequuntur? Delectus nisi neque
+                    eligendi recusandae quisquam, quam laudantium saepe tempora, aut dicta velit. Deleniti, recusandae?
+                    Voluptatem nulla, molestiae praesentium, assumenda deleniti similique veniam sequi eius aut
+                    obcaecati nemo vero eligendi voluptates, pariatur quaerat eveniet voluptatum rem repellendus magnam
+                    necessitatibus? Eos dolor minus officiis molestiae quibusdam quae provident, doloremque mollitia
+                    quasi itaque ut et earum dolore magnam voluptas optio impedit, unde ducimus ipsum vero voluptates
+                    modi temporibus? Quos eos aspernatur recusandae amet, totam nulla itaque ea velit, corrupti possimus
+                    ab fugit debitis. A, iste. Modi odio deleniti ipsam minima consequatur impedit! Quod beatae, numquam
+                    tenetur sit repellendus deserunt fuga eveniet commodi doloremque tempora ullam nam nesciunt nulla ex
+                    laborum optio eaque iure, corrupti assumenda! A quae dignissimos tempore alias impedit! Consequuntur
+                    consequatur fuga soluta rem a reiciendis officia. Molestiae ipsam rem autem, eaque, aut velit
+                    accusamus sit fugiat molestias eveniet nobis culpa qui, iure quibusdam perferendis eos neque facere
+                    eum animi delectus fuga. Eum repellendus eius aliquam facilis repudiandae dolore veritatis dolorum
+                    labore magni blanditiis ea voluptate officia porro sit nisi culpa, aperiam velit suscipit minima
+                    perferendis officiis optio nostrum architecto! At adipisci in aperiam nulla? Recusandae deserunt
+                    voluptate aliquam quo. Cupiditate dolores in nemo sed facere illum aspernatur iusto deleniti aliquid
+                    laboriosam obcaecati blanditiis labore sit, non ea optio vitae ullam quos eos sint saepe fuga?
+                    Necessitatibus nihil recusandae ratione laborum quos quas beatae illo dolorum, ipsam veritatis earum
+                    voluptate rem quae animi consequuntur aliquam perferendis autem quis hic, illum in dignissimos
+                    accusamus dolorem. Fuga labore quod at fugiat officiis excepturi alias rem, rerum sed architecto
+                    voluptatum necessitatibus. In cupiditate vero modi deleniti earum quos vitae! Voluptate, dignissimos
+                    fugiat vero tenetur fugit error! Cum dicta deleniti velit placeat maxime sequi saepe aspernatur
+                    quibusdam numquam cupiditate accusantium, sit corporis doloremque eligendi pariatur dolorum odio
+                    error ducimus vel possimus vitae fuga labore! Atque, omnis itaque? Cumque neque eius esse
+                    voluptates, hic nisi fugiat libero debitis ex pariatur impedit dolorem reiciendis! Nisi, molestias
+                    quisquam, mollitia rem exercitationem odit similique maiores nam necessitatibus esse, sequi pariatur
+                    officiis tempora in quis. Dolor ratione magnam ex accusamus minima repellat adipisci sapiente. Quis
+                    suscipit placeat dignissimos eligendi dolorum excepturi temporibus qui quasi minus nostrum, maiores
+                    voluptas inventore consequuntur fugit nam, atque in nobis repellat alias quos enim saepe corporis
+                    nulla. Ducimus maxime quae reprehenderit laborum autem consectetur repellendus nostrum optio
+                    assumenda quis reiciendis unde ut sapiente dolore eveniet facere ipsum tempore velit quasi, quas
+                    tempora libero deserunt veritatis? Ducimus fugit magnam tenetur obcaecati molestias consectetur
+                    libero quidem perferendis architecto inventore quibusdam iste assumenda, labore maiores
+                    reprehenderit veritatis qui quas praesentium numquam. Nobis laborum et laboriosam suscipit alias
+                    ipsa, adipisci accusantium magni provident laudantium vero totam dolorum esse maxime consequuntur
+                    neque quod temporibus dicta. Porro cum quo possimus consequatur dignissimos voluptatibus quae,
+                    necessitatibus voluptatem impedit obcaecati eligendi ut, alias facilis quibusdam? Quisquam odit eos
+                    rerum quis vero dolorem quas voluptatum? Dolorum voluptates id earum, totam, omnis rem harum nobis
+                    vero quos, iure ab porro odit pariatur libero! Quas odit nobis sint beatae saepe aliquam iusto
+                    dolores!</p>
+            </article>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><i class="fas fa-home"></i> Home </li>
+            <li><i class="fas fa-user-alt"></i> About </li>
+            <li><i class="fas fa-envelope"></i> Contact </li>
+        </ul>
+    </nav>
+
+    <script>
+        const open = document.getElementById('open');
+        const close = document.getElementById('close');
+        const container = document.querySelector('.container');
+
+        open.addEventListener('click', () => {
+            container.classList.add('show-nav');
+        })
+
+        close.addEventListener('click', () => {
+            container.classList.remove('show-nav');
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(#4174b8, #2323);
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            margin: 10px;
+        }
+
+        .box {
+            background-color: rgba(7, 28, 73, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 10px 4px 5px rgba(19, 48, 112, 0.2);
+            transform: translateX(400%);
+            transition: transform 0.4s ease;
+        }
+
+        .box:nth-of-type(even) {
+            transform: translateX(-400%);
+        }
+
+        .box.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Scroll to See the Animation</h1>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+    <div class="box">
+        <h2>Something</h2>
+    </div>
+
+    <script>
+        const boxes = document.querySelectorAll('.box');
+
+        window, addEventListener('scroll', checkBoxes);
+
+        checkBoxes();
+
+        function checkBoxes() {
+            const trigBot = window.innerHeight / 5 * 4;
+
+            boxes.forEach((box) => {
+                const boxTp = box.getBoundingClientRect().top; // size viweport for the top rectangle
+
+                if (boxTp < trigBot) {
+                    box.classList.add('show');
+                } else {
+                    box.classList.remove('show');
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            color: #222;
+            padding-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            position: fixed;
+            background-color: #222;
+            top: 0;
+            left: 0;
+            right: 0;
+            transition: all .3s ease-in-out;
+        }
+
+        .nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all .3s ease-in-out;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 7px 15px;
+            transition: all .3s ease-in-out;
+        }
+
+        .nav.active {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav.active a {
+            color: #000;
+        }
+
+        .nav.active .container {
+            padding: 10px 0;
+        }
+        
+        .nav a.current, .nav a:hover {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+
+        .hero {
+            background-image: url('https://picsum.photos/1260/750');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom center;
+            height: 100vh;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+            z-index: -2;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: -20px 0 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .content h2, .content h3 {
+            font-size: 150%;
+            margin: 20px 0;
+        }
+
+        .content p {
+            color: #555;
+            line-height: 30px;
+            letter-spacing: 1.2px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container">
+            <h1 class="logo"><a href="href="/index.html"">My Web</a></h1>
+            <ul>
+                <li><a href="#" class="current">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, voluptas.</p>
+        </div>
+    </div>
+
+    <section class="container content">
+        <h2>Content One</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum laboriosam vel sit excepturi eius tempore, nemo cumque accusantium animi iste assumenda earum hic distinctio deleniti amet qui maxime rem non facilis asperiores maiores voluptatum cum expedita? Nisi, recusandae ad? Illo sunt odit, libero nisi aspernatur autem, praesentium pariatur ut aperiam veritatis amet laudantium voluptates voluptate sint! Nulla laboriosam recusandae ipsum eius fugiat voluptatibus fugit libero culpa illum pariatur sequi nihil, quis nobis ipsa praesentium dolorum repellendus. Quis cupiditate maiores necessitatibus delectus, nam ducimus tenetur quasi voluptatem eius, et, placeat rem officiis officia ex? Hic, repellendus ipsam eveniet officia veniam nam?</p>
+
+        <h3>Content Two</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam ut sunt cumque. Laborum hic id doloremque beatae repudiandae officiis, quo porro adipisci impedit. Sed nesciunt soluta aliquam consequuntur expedita harum, quod nulla officiis dolorum mollitia tempora amet quo nemo quidem. Necessitatibus consequatur, suscipit ea illum repellat unde ratione laboriosam quibusdam!</p>
+    </section>
+    
+    <script>
+        const nav = document.querySelector('.nav')
+        window.addEventListener('scroll', fixNav);
+
+        function fixNav() {
+            if (window.scrollY > nav.offsetHeight + 150) {
+                nav.classList.add('active')
+            } else {
+                nav.classList.remove('active')
+            }
+        }
+    </script>
+</body>
+
+</html>

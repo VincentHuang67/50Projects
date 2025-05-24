@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Times, serif;
+            background: linear-gradient(rgb(176, 176, 209), rgb(140, 140, 202), rgb(10, 20, 46));
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .btn {
+            background: linear-gradient( #dbe08a, #674cc5);
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            margin: 1rem;
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+</head>
+
+<body>
+    <audio id="applause" src="../50Projects/9-soundBoard/sounds/applause.mp3"></audio>
+    <audio id="boo" src="../50Projects/9-soundBoard/sounds/boo.mp3"></audio>
+    <audio id="gasp" src="../50Projects/9-soundBoard/sounds/gasp.mp3"></audio>
+    <audio id="tada" src="../50Projects/9-soundBoard/sounds/tada.mp3"></audio>
+    <audio id="victory" src="../50Projects/9-soundBoard/sounds/victory.mp3"></audio>
+    <audio id="wrong" src="../50Projects/9-soundBoard/sounds/wrong.mp3"></audio>
+    
+    <div id="buttons"></div>
+    
+    <script>
+        const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong'];
+        
+        sounds.forEach(sound => {
+            const btn = document.createElement('button');
+            btn.classList.add('btn');
+            btn.innerText = sound;
+
+            btn.addEventListener('click', () => {
+                stopSound();
+                document.getElementById(sound).play();
+            })
+
+            document.getElementById('buttons').appendChild(btn)
+        })
+
+        function stopSound() {
+            sounds.forEach(sound => {
+                const song = document.getElementById(sound);
+                song.pause();
+                song.currentTime = 0;
+            })
+        }
+
+    </script>
+</body>
+
+</html>

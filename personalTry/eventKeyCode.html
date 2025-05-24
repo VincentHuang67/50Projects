@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            background-color: blanchedalmond;
+            display: flex;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .key {
+            border: 1px solid #999;
+            background-color: #eee;
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1), 10px 2px 5px 1px #FFF;
+            display: inline-flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            flex-direction: column;
+            margin: 10px;
+            min-width: 150px;
+            position: relative;
+        }
+
+
+        .key small {
+            position: absolute;
+            top: -24px;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            color: #555;
+            font-size: 14px;
+        }
+
+        @media(max-width: 480px) {
+            .key {
+                margin: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="insert">
+        <!-- <div class="key">
+            a
+            <small>event.key</small>
+        </div>
+        <div class="key">
+            65
+            <small>event.keyCode</small>
+        </div>
+        <div class="key">
+            KeyA
+            <small>event.code</small>
+        </div> -->
+        <div class="key">
+            Press any key
+        </div>
+    </div>
+
+    <script>
+        const insert = document.getElementById('insert');
+        const keys = document.querySelectorAll('.key');
+
+        window.addEventListener('keydown', (e) => {
+            insert.innerHTML = `
+            <div class="key">
+                ${e.key === ' ' ? 'Space' : e.key}
+                <small>event.key</small>
+            </div>
+            <div class="key">
+                ${e.keyCode}
+                <small>event.keyCode</small>
+            </div>
+            <div class="key">
+                ${e.code}
+                <small>event.code</small>
+            </div>
+            `
+        })
+    </script>
+</body>
+
+</html>

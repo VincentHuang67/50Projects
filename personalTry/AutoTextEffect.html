@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        div {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        input {
+            width: 50px;
+            padding: 5px;
+            font-size: 18px;
+            background-color: #111;
+            border: none;
+            text-align: center;
+            color: inherit;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 id="text">Starting...</h1>
+
+    <div>
+        <label for="speed">Speed:</label>
+        <input type="number" name="speed" id="speed" value="1" min="1" max="5" step="1">
+    </div>
+    
+    <script>
+        const textEl = document.getElementById('text')
+        const speedEl = document.getElementById('speed')
+        const text = "Demo text"
+        let idx = 1
+        let speed = 300 / speedEl.value
+        
+        writeText()
+
+        function writeText() {
+            textEl.innerText = text.slice(0, idx)
+            
+            setTimeout(() => {
+                idx++
+                if (idx > text.length) {
+                    idx = 1
+                }
+                writeText()
+            }, speed);
+        }
+
+        speedEl.addEventListener('input', e => {
+            speed = 300 / e.target.value
+        })
+
+    </script>
+</body>
+
+</html>

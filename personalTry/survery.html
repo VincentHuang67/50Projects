@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fef9f2;
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .panel-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            font-size: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .panel-container strong {
+            line-height: 20px;
+        }
+
+        .ratings-container {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .rating {
+            flex: 1;
+            cursor: pointer;
+            padding: 20px;
+            margin: 10px 5px;
+        }
+
+        .rating:hover, .rating.active {
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating img {
+            width: 40px;
+        }
+
+        .rating small {
+            color: #555;
+            display: inline-block;
+            margin: 10px 0 0;
+        }
+
+        .rating:hover small, .rating.active small{
+            color: #111;
+        }
+
+        .btn {
+            background-color: #302d2b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 30px;
+            cursor: pointer;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .fa-heart {
+            color: red;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="panel" class="panel-container">
+        <strong>How satisfied are you with our <br /> customer support performance?</strong>
+        <div class="ratings-container">
+            <div class="rating">
+                <img src="https://cdn-icons-png.flaticon.com/512/187/187150.png" alt="">
+                <small>UnHappy</small>
+            </div>
+            <div class="rating">
+                <img src="https://cdn-icons-png.flaticon.com/512/187/187136.png" alt="">
+                <small>Neutral</small>
+            </div>
+            <div class="rating active">
+                <img src="https://cdn-icons-png.flaticon.com/512/187/187133.png" alt="">
+                <small>Satisfied</small>
+            </div>
+        </div>
+        <button class="btn" id="send">Send Review</button>
+    </div>
+    
+    <script>
+        const ratings = document.querySelectorAll('.rating')
+        const sendBtn = document.querySelector('#send')
+        const panel = document.querySelector('#panel')
+        const ratingContainer = document.querySelector('.ratings-container')
+        let selectedRating = 'Satisfied'
+
+        // Using event bubbling
+        ratingContainer.addEventListener('click', (e) => {
+            if (e.target.parentNode.classList.contains('rating')) {
+                removeActive()
+                e.target.parentNode.classList.add('active')
+                selectedRating = e.target.nextElementSibling.innerHTML
+            }
+        })
+
+        sendBtn.addEventListener('click', (e) => {
+            panel.innerHTML = `
+                <i class="fas fa-heart"></i>
+                <strong>Thank you!</string>
+                <br />
+                <strong>Feedback: ${selectedRating}</strong>
+                <p>We'll use your feedback to improve out customer sopport</P>
+            `
+        })
+
+        function removeActive() {
+            ratings.forEach(rating => {
+                rating.classList.remove('active')
+            })
+        }
+
+    </script>
+</body>
+
+</html>

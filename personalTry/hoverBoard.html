@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 400px;
+        }
+
+        .square {
+            background-color: #1d1d1d;
+            box-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+            height: 16px; /* Or 1rem*/
+            width: 16px;
+            margin: 2px;
+            transition: all 2s ease;
+        }
+
+        .square:hover {
+            transition-duration: 0s;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+    </div>
+    
+    <script>
+        const container = document.querySelector('.container')
+        const colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple']
+        const SQUARES = 500
+
+        for (let i = 0; i < SQUARES; i++) {
+            const square = document.createElement('div')
+            square.classList.add('square')
+            
+            square.addEventListener('mouseover', () => setColor(square))
+            square.addEventListener('mouseout', () => removeColor(square))
+            
+            container.appendChild(square)
+        }
+
+        function setColor(el) {
+            const color = getRandomColor()
+            console.log(color);
+            
+            el.style.background = color
+            el.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
+        }
+
+        function getRandomColor() {
+            return colors[Math.floor(Math.random() * colors.length)]
+        }
+
+        function removeColor(el) {
+            el.style.background = '#1d1d1d'
+            el.style.boxShadow = '0 0 1px rgba(255, 255, 255, 0.3)'
+        }
+
+    </script>
+</body>
+
+</html>

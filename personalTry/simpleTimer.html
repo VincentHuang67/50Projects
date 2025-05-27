@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <style type="text/tailwindcss">
+            /* Custom CSS */            
+            :root {
+                --degree: 0deg;
+            }
+
+            .bg-conic {
+                background: conic-gradient(
+                    transparent 0deg,
+                    transparent var(--degree),
+                    white var(--degree),
+                    white 360deg
+                )
+            }
+
+            .hand {
+                transform-origin: bottom center;
+                transform: rotate(var(--degree));
+            }
+        </style>
+    <title>Document</title>
+
+</head>
+
+<body class="bg-gray-700 flex justify-center items-center min-h-screen">
+    <div class="bg-gray-900 p-16 rounded-2xl shadow w-full max-w-sm">
+        <h1 class="text-white text-center text-4xl">Timer</h1>
+        <!-- Create Cycle -->
+         <div id="conic" class="bg-conic flex justify-center items-center w-60 h-60 mx-auto my-10 rounded-full relative">
+            <p id="timer" class="text-blue-200 relative text-5xl z-10">
+                00:00
+            </p>
+
+            <!-- inner cycle -->
+             <div class="w-[calc(100% - 4px)] bg-gray-800 aspect-square rounded-full absolute inset-[2px]"></div>
+
+             <!-- Create hand/marker -->
+              <div class="hand h-1/2 absolute top-0">
+                <span class="w-2 h-2 bg-white rounded-full absolute -top-1 -left-1"></span>
+              </div>
+         </div>
+         <!-- Buttons -->
+          <div class="flex justify-center gap-6">
+            <button id="reset" class="flex justify-center items-center w-10 h-10 bg-blue-300 rounded-full cursor-pointer">
+                <i class="fas fa-sync"></i>
+            </button>
+            
+            <button id="play" class="flex justify-center items-center w-10 h-10 bg-blue-300 rounded-full cursor-pointer">
+                <i class="fas fa-play"></i>
+            </button>
+          </div>
+    </div>
+    
+
+    <script>
+        const resetBtn = document.getElementById('reset')
+        const playBtn = document.getElementById('play')
+        const timerEl = document.getElementById('timer')
+        const root = document.querySelector(':root')
+
+        // Init
+        const totalSeconds = 60
+        let playing = false
+        let currentSeconds = totalSeconds
+        timerEl.innerText = formatTime(totalSeconds)
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60)
+            const newSeconds = seconds % 60
+            return `${minutes.toString().padStart(2, '0')}:${newSeconds.toString().padStart(2, '0')}`
+        }
+
+        // Run the run() every seconds
+        const timerInterval = setInterval(run, 1000)
+
+        // Event Lisener
+        playBtn.addEventListener('click', () => {
+            playing = !playing
+            playBtn.classList.toggle('play')
+            playBtn.classList.toggle('bg-green-500')
+            const playIcon = playBtn.querySelector('i')
+            playIcon.classList.toggle('fa-play')
+            playIcon.classList.toggle('fa-pause')
+        })
+
+        resetBtn.addEventListener('click', resetAll)
+
+        // Calculate degrees
+        function calcDeg() {
+            return `${360 - (currentSeconds / totalSeconds) * 360}deg`
+        }
+
+        // Reset the timer
+        function resetAll() {
+            playing = false
+            playBtn.classList.remove('play')
+            playBtn.classList.remove('bg-green-500')
+            const playIcon = playBtn.querySelector('i')
+            playIcon.classList.remove('fa-pause')
+            playIcon.classList.add('fa-play')
+            currentSeconds = totalSeconds
+            timerEl.innerText = formatTime(totalSeconds)
+            root.style.setProperty('--degree', '0deg')
+        }
+
+        // Run the timer
+        function run() {
+            if (playing) {
+                currentSeconds--
+                if (currentSeconds <= 0) {
+                    clearInterval(timerInterval)
+                    resetAll()
+                }
+
+                timerEl.innerText = formatTime(currentSeconds)
+                root.style.setProperty('--degree', calcDeg())
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

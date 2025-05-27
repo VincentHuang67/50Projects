@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Chewy:wght@400;700&display=swap');
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f4f4f4;
+        font-family: 'Chewy', 'Times New Roman', Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .testimonial-container {
+        background-color:  #476ce4;
+        color: #fff;
+        border-radius: 15px;
+        margin: 20px auto;
+        padding: 50px 80px;
+        max-width: 768px;
+        position: relative;
+      }
+
+      .fa-quote {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 28px;
+        position: absolute;
+        top: 70px;
+    }
+
+    .fa-quote-right {
+        left: 40px;
+    }
+
+    .fa-quote-left {
+        right: 40px;
+    }
+
+    .testimonial {
+        line-height: 28px;
+        text-align: justify;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user .user-image {
+        border-radius: 50%;
+        height: 75px;
+        width: 75px;
+        object-fit: cover;
+    }
+
+    .user .user-details {
+        margin-left: 10px;
+    }
+
+    .user .username {
+        margin: 0;
+    }
+
+    .user .role {
+        font-weight: normal;
+        margin: 10px 0;
+    }
+
+    .progress-bar {
+        background-color: #fff;
+        height: 4px;
+        width: 100%;
+        animation: grow 10s linear infinite;
+        transform-origin: left;
+    }
+
+    @keyframes grow {
+        0% {
+            transform: scaleX(0);
+        }
+    }
+
+    @media(max-width: 768px) {
+        .testimonial-container {
+            padding: 20px 30px;
+        }
+
+        .fa-quote {
+            display: none;
+        }
+    }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="testimonial-container">
+      <div class="progress-bar"></div>
+      <div class="fas fa-quote-left fa-quote"></div>
+      <div class="fas fa-quote-right fa-quote"></div>
+      <p class="testimonial">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+        architecto necessitatibus asperiores doloribus! Hic sint in dolores
+        voluptatibus, autem laboriosam similique tempora architecto, mollitia
+        dignissimos recusandae odit vero, iure laudantium omnis alias?
+        Voluptates, quasi sunt. Optio laborum suscipit voluptas dolor fugit at
+        doloribus veritatis facilis non nihil omnis, fugiat labore nam iusto
+        autem vel incidunt, unde ex beatae? Eaque, quia itaque dolorem culpa
+        dolorum sunt! Totam sit amet non aperiam quidem ea placeat doloribus, id
+        quam qui nobis, iste explicabo minus voluptates! Autem, eligendi
+        accusantium facilis aspernatur incidunt consectetur quos ipsum, ipsam
+        dolores cupiditate provident quam nisi natus dolore in.
+      </p>
+      <div class="user">
+        <img
+          src="https://randomuser.me/api/portraits/men/41.jpg"
+          alt="user"
+          class="user-image"
+        />
+        <div class="user-details">
+            <h4 class="username">Someone</h4>
+            <p class="role">Marketing</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        const testimonialContainer = document.querySelector('testimonials-container')
+        const testimonial = document.querySelector('.testimonial')
+        const userImage = document.querySelector(".user-image")
+        const username = document.querySelector('.username')
+        const role = document.querySelector('.role')
+
+        const testimonials = [
+            {
+                name: "John Doe",
+                position: "Software Engineer",
+                photo: 
+                    "https://randomuser.me/api/portraits/men/42.jpg",
+                text: 
+                    "loremsjda sd asd asd asfga sg as ag ",
+            },
+            {
+                name: "Jane Smith",
+                position: "Product Manager",
+                photo: 
+                    "https://randomuser.me/api/portraits/men/43.jpg",
+                text: 
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit architecto necessitatibus asperiores doloribus! Hic sint in dolores voluptatibus, autem laboriosam similique tempora architecto, mollitia dignissimos recusandae odit vero, iure laudantium omnis alias? Volupt.",
+            },
+            {
+                name: "Alice Johnson",
+                position: "UX Designer",
+                photo: 
+                    "https://randomuser.me/api/portraits/men/44.jpg",
+                text: 
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit architecto necessitatibus asperiores doloribus! Hic sint in dolores volupbus, id quam qui nobis, iste explicabo minus voluptates! Autem, eligendi accusantium facilis aspernatur incidunt consectetur quos ipsum, ipsam dolores cupiditate provident quam nisi natus dolore in.",
+            },
+        ]
+
+        let idx = 1
+        
+        function updateTestimonial() {
+            const { name, position, photo, text } = testimonials[idx]
+            
+            testimonial.innerHTML = text
+            userImage.src = photo
+            username.innerHTML = name
+            role.innerHTML = position
+            idx++
+
+            if (idx > testimonials.length - 1) {
+                idx = 0
+            }
+        }
+
+        setInterval(updateTestimonial, 10000)
+
+
+    </script>
+  </body>
+</html>
